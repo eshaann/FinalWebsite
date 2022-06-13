@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container" style= "color:white">
+
+<div class="jumbotron">
+  <br>
+<br>
+ <br>
+ <br>
+ <h1 style = "color:white">Results</h1>
+<br>
+<br>
+{% if selprod|length == 0 %}
+<h3>No Products Matched Your Search</h3>
+{% endif %}
+
+{%for shoe in selprod%}
+  <div class="card text-white bg-dark mb-3" style="width:20rem;">
+  <img src="../static/{{shoe.filename}}" class="card-img-top" alt="...">
+  <div class="card-body" style = "text-align:center">
+    <h3 class="card-title">{{shoe.name}}</h3>
+    <h4>Condition: {{shoe.condition}}</h4>
+    <h4>{{shoe.shoetype}}</h4>
+    <h4>Size: {{shoe.size}} {{gender}}</h4>
+    <h3>{{shoe.price}}</h3>
+    <p class="card-text">{{shoe.description}}</p>
+    <div class="col text-center">
+   <a href="{{ url_for('shopall') +"/" + shoe.productID|string }}" class="btn btn-primary">Buy</a>
+    </div>
+  </div>
+</div>
+<br>
+{%endfor%}
+</div>
+</div>
+{%endblock%}
